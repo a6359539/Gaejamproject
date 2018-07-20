@@ -35,11 +35,13 @@ public:
 	UFUNCTION()
 		void MoveRight(float Value);
 
-
+	
 	UPROPERTY(EditAnywhere)
 		float FB;
 	UPROPERTY(EditAnywhere)
 		float LR;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool possessing;
 
 	UFUNCTION(BlueprintCallable, Category = "Tick Nodes")
 		float RFB();

@@ -10,6 +10,8 @@ AMyCharacter::AMyCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	possessing = 0;
+
 
 }
 
@@ -40,23 +42,43 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void AMyCharacter::Turn(float Value)
 {
-	AddControllerYawInput(Value);
+	if (possessing)//못움직이게 할 상황
+	{
+	}
+	else{
+		AddControllerYawInput(Value);
+	}
 }
 
 void AMyCharacter::Lookup(float Value)
 {
-	AddControllerPitchInput(Value);
+	if (possessing)
+	{
+	}
+	else {
+		AddControllerPitchInput(Value);
+	}
 }
 
 void AMyCharacter::MoveForward(float Value)
 {
-	AddMovementInput(GetActorForwardVector(), Value);
-	FB = Value;
+	if (possessing)
+	{
+	}
+	else {
+		AddMovementInput(GetActorForwardVector(), Value);
+		FB = Value;
+	}
 }
 void AMyCharacter::MoveRight(float Value)
 {
-	AddMovementInput(GetActorRightVector(), Value);
-	LR = Value;
+	if (possessing)
+	{
+	}
+	else {
+		AddMovementInput(GetActorRightVector(), Value);
+		LR = Value;
+	}
 }
 
 
