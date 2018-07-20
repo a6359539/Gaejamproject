@@ -26,6 +26,23 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
+	UFUNCTION()
+		void Turn(float Value);
+	UFUNCTION()
+		void Lookup(float Value);
+	UFUNCTION()
+		void MoveForward(float Value);
+	UFUNCTION()
+		void MoveRight(float Value);
+
+
+	UPROPERTY(EditAnywhere)
+		float FB;
+	UPROPERTY(EditAnywhere)
+		float LR;
+
+	UFUNCTION(BlueprintCallable, Category = "Tick Nodes")
+		float RFB();
+	UFUNCTION(BlueprintCallable, Category = "Tick Nodes")
+		float RLR();
 };

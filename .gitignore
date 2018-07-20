@@ -6,3 +6,5 @@ Binaries/Win64/UE4Editor.modules
 Saved/Config/Windows/Scalability.ini
 Saved/
 Intermediate/
+.vs/
+Binaries/

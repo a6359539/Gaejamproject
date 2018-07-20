@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "MyCharacter.h"
-
+#include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Controller.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -29,6 +31,41 @@ void AMyCharacter::Tick(float DeltaTime)
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AMyCharacter::MoveForward);
+	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AMyCharacter::Turn);
+	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AMyCharacter::MoveRight);
+	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AMyCharacter::Lookup);
+	
 }
 
+void AMyCharacter::Turn(float Value)
+{
+	AddControllerYawInput(Value);
+}
+
+void AMyCharacter::Lookup(float Value)
+{
+	AddControllerPitchInput(Value);
+}
+
+void AMyCharacter::MoveForward(float Value)
+{
+	AddMovementInput(GetActorForwardVector(), Value);
+	FB = Value;
+}
+void AMyCharacter::MoveRight(float Value)
+{
+	AddMovementInput(GetActorRightVector(), Value);
+	LR = Value;
+}
+
+
+float AMyCharacter::RFB()
+{
+	return FB;
+}
+float AMyCharacter::RLR() {
+
+	return LR; 
+
+}
