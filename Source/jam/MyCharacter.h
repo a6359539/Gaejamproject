@@ -27,10 +27,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION()
-		void Turn(float Value);
-	UFUNCTION()
-		void Lookup(float Value);
-	UFUNCTION()
 		void MoveForward(float Value);
 	UFUNCTION()
 		void MoveRight(float Value);

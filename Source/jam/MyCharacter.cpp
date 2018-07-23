@@ -34,51 +34,49 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &AMyCharacter::MoveForward);
-	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &AMyCharacter::Turn);
 	PlayerInputComponent->BindAxis(TEXT("MoveRight"), this, &AMyCharacter::MoveRight);
-	PlayerInputComponent->BindAxis(TEXT("LookUp"), this, &AMyCharacter::Lookup);
-	
 }
 
-void AMyCharacter::Turn(float Value)
-{
-	if (possessing)//못움직이게 할 상황
-	{
-	}
-	else{
-		AddControllerYawInput(Value);
-	}
-}
-
-void AMyCharacter::Lookup(float Value)
-{
-	if (possessing)
-	{
-	}
-	else {
-		AddControllerPitchInput(Value);
-	}
-}
 
 void AMyCharacter::MoveForward(float Value)
 {
-	if (possessing)
+	if (GetActorLocation().X >= 0 && GetActorLocation().X<=1000)
 	{
-	}
-	else {
 		AddMovementInput(GetActorForwardVector(), Value);
 		FB = Value;
+	}
+	else
+	{
+		if (GetActorLocation().X < 0) 
+		{
+			SetActorLocation(FVector(1, GetActorLocation().Y, GetActorLocation().Z));
+		}
+		else if(GetActorLocation().X > 1000)
+		{
+			SetActorLocation(FVector(999, GetActorLocation().Y, GetActorLocation().Z));
+		}
 	}
 }
 void AMyCharacter::MoveRight(float Value)
 {
-	if (possessing)
+	if (GetActorLocation().Y >= 0 && GetActorLocation().Y <= 3000)
 	{
-	}
-	else {
 		AddMovementInput(GetActorRightVector(), Value);
 		LR = Value;
 	}
+	else
+	{
+		if (GetActorLocation().Y < 0)
+		{
+			SetActorLocation(FVector(GetActorLocation().X, 1, GetActorLocation().Z));
+		}
+		else if(GetActorLocation().Y > 3000)
+		{
+			SetActorLocation(FVector(GetActorLocation().X, 2999, GetActorLocation().Z));
+		}
+	}
+
+	
 }
 
 
