@@ -1,4 +1,4 @@
-
+.vs/
 .vs/jam/v15/.suo
 Binaries/Win64/UE4Editor-jam.dll
 Binaries/Win64/UE4Editor-jam.pdb
@@ -6,3 +6,4 @@ Binaries/Win64/UE4Editor.modules
 Saved/Config/Windows/Scalability.ini
 Saved/
 Intermediate/
+Binaries/
