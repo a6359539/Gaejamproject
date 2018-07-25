@@ -55,6 +55,7 @@ void AMyCharacterVER2::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 void AMyCharacterVER2::MoveForward(float Value)
 {
+	
 	if (possessing)
 	{
 	}
@@ -67,25 +68,10 @@ void AMyCharacterVER2::MoveForward(float Value)
 			// get forward vector
 			const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 			AddMovementInput(Direction, Value);
-			FB = 1;
 		}
+		FB = Value;
 	}
-	/*
-	if ((Controller != NULL) && (Value != 0.0f))
-	{
-		if (possessing)
-		{
-		}
-		else {
-			const FRotator Rotation = Controller->GetControlRotation();
-			const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-			// get forward vector
-			const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-			AddMovementInput(Direction, Value);
-			FB = Value;
-		}
-	}*/
+	
 }
 void AMyCharacterVER2::MoveRight(float Value)
 {
@@ -98,33 +84,19 @@ void AMyCharacterVER2::MoveRight(float Value)
 			// find out which way is right
 			const FRotator Rotation = Controller->GetControlRotation();
 			const FRotator YawRotation(0, Rotation.Yaw, 0);
-
 			// get right vector 
 			const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 			// add movement in that direction
 			AddMovementInput(Direction, Value);
-			FB = 1;
 		}
-	}
-	/*
-	if (possessing)
-	{
-	}
-	else {
-		// find out which way is right
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-		// get right vector 
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		// add movement in that direction
-		AddMovementInput(Direction, Value);
 		LR = Value;
-	}*/
+	}
+
 }
 
-
-float AMyCharacterVER2::RFB()
+/*
+float AMyCharacterVER2::RMove()
 {
-	return FB;
+	//return Move;
 }
+*/
